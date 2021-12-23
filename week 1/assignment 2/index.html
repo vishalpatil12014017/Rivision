@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="topContainer">
+        <div class="navbar">
+            <div class="navbarLeftcontainer">
+                <div class="topbarLogo"></div>
+
+                <a class="newPost" href="">
+                    <img src="https://s.imgur.com/desktop-assets/desktop-assets/icon-new-post.13ab64f9f36ad8f25ae3544b350e2ae1.svg"
+                        alt="" />
+                    <span>New Post</span>
+                </a>
+            </div>
+            <div class="navbarCentercontainer">
+                <div class="searchbar">
+                    <input placeholder="Images, #tags, @users oh my!" type="text" class="Searchbar-textInput"
+                        id="search" oninput="handleChange(this.value)" />
+                    <button onclick="handleClick()" class="Searchbar-submitInput">
+                        <img class="search"
+                            src="https://s.imgur.com/desktop-assets/desktop-assets/icon-search.8d0f9b564a4659d48d8eca38b968a7f2.svg" />
+                    </button>
+                </div>
+            </div>
+            <div class="navbarContainerRight">
+                <div class="right">
+                    <button>Go Ad-Free</button>
+                    <button>Sign in</button>
+                    <button>Sign up</button>
+                </div>
+            </div>
+        </div>
+        <div class="message">I am one with the memes and the memes are with me.</div>
+        <div class="TrendingTags">
+            <div class="TrendingTagsHeader" style="width: 1342px; padding: 0px 6px">
+                <div class="TrendingTagsLabel"><span>Explore Tags</span></div>
+                <a class="TrendingTagsLabelToggle">MORE TAGS +</a>
+            </div>
+            <div class="static-grid">
+                <div>
+                    <div class="static-data1">
+                        <div>Board Games</div>
+                        <div>FEATURED - 3,885 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data2">
+                        <div>2021</div>
+                        <div>882 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data3">
+                        <div>Secret Santa</div>
+                        <div>52,349 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data4">
+                        <div>Bacon</div>
+                        <div>5,645 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data5">
+                        <div>Inspring</div>
+                        <div>84,654 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data6">
+                        <div>Pondering My Orb</div>
+                        <div>368 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data7">
+                        <div>Secret Santa Workshop</div>
+                        <div>242 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data8">
+                        <div>Christmas</div>
+                        <div>48,172 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data9">
+                        <div>Disney</div>
+                        <div>14,773 Posts</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="static-data10">
+                        <div>Share Your View</div>
+                        <div>3,883 Posts</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="buttons"></div>
+    <div id="mainPhotos">
+        <div id="mainPhotosContainer1"></div>
+        <div id="mainPhotosContainer2"></div>
+        <div id="mainPhotosContainer3"></div>
+        <div id="mainPhotosContainer4"></div>
+        <div id="mainPhotosContainer5"></div>
+    </div>
+</body>
+<script src="index.js"></script>
+
+</html>
