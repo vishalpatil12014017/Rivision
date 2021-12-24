@@ -1,46 +1,50 @@
 showButtons(1);
 async function getData(val, page) {
-    console.log(val, page);
-    try {
-        let data = await fetch(
-            `https://api.unsplash.com/search/photos?client_id=1_mZ7KFa6sDdUAKLf3npFtX5ASyCft4qo3E7dkPVKyw&page=${page}&per_page=30&query=${val}`
-        );
-        let data2 = await data.json();
-        console.log(data.Response);
-        if (data2.Response == "False") {
-            console.log("err");
+  console.log(val, page);
+  try {
+    let data = await fetch(
+      `https://api.unsplash.com/search/photos?client_id=1_mZ7KFa6sDdUAKLf3npFtX5ASyCft4qo3E7dkPVKyw&page=${page}&per_page=30&query=${val}`
+    );
+    let data2 = await data.json();
+  
+    console.log(data.Response);
+    if (data2.Response == "False") {
+      console.log("err");
+    } else {
+      let data3 = data2.results;
+      console.log('data3:', data3)
+      let arr = [
+        "mainPhotosContainer1",
+        "mainPhotosContainer2",
+        "mainPhotosContainer3",
+        "mainPhotosContainer4",
+        "mainPhotosContainer5",
+      ];
+      let floor = Math.floor(data3.length / arr.length);
+      console.log(floor);
+      for (let i = 0; i < arr.length; i++) {
+        if (i == 0) {
+          showData(data3.slice(i, floor + 1), arr[0]);
         } else {
-            let data3 = data2.results;
-            let arr = [
-                "mainPhotosContainer1",
-                "mainPhotosContainer2",
-                "mainPhotosContainer3",
-                "mainPhotosContainer4",
-                "mainPhotosContainer5",
-            ];
-            let floor = Math.floor(data3.length / arr.length);
-            console.log(floor);
-            for (let i = 0; i < arr.length; i++) {
-                if (i == 0) {
-                    showData(data3.slice(i, floor + 1), arr[0]);
-                } else {
-                    showData(data3.slice(floor * i, floor * i + (floor + 1)), arr[i]);
-                }
-            }
+          showData(data3.slice(floor * i, floor * i + (floor + 1)), arr[i]);
         }
-    } catch (e) {
-        console.log(e, "hi");
+      }
     }
+  } catch (e) {
+    console.log(e, "hi");
+  }
+  
 }
+
 getData("nature", 1);
 function showData(data, box) {
-    box = document.getElementById(`${box}`);
-    box.innerHTML = null;
-    data.map((el) => {
-        let imageCardDiv = document.createElement("div");
-        imageCardDiv.id = "imageCard";
+  box = document.getElementById(`${box}`);
+  box.innerHTML = null;
+  data.map((el) => {
+    let imageCardDiv = document.createElement("div");
+    imageCardDiv.id = "imageCard";
 
-        imageCardDiv.innerHTML = `
+    imageCardDiv.innerHTML = `
       <div class="image">
         <img
           src=${el.urls.small}
@@ -49,7 +53,7 @@ function showData(data, box) {
       </div>
       <div class="description">
         <div class="forPadding">
-          <p>How churros are made in traditional churrafas</p>
+          <p>${el.alt_description}</p>
           <div class="stats">
             <div class="Vote Vote-up">
               <svg
@@ -113,7 +117,7 @@ function showData(data, box) {
                 ></path>
               </svg>
 
-              <span> 133 </span>
+              <span> ${el.likes} </span>
             </div>
             <div>
               <svg
@@ -136,57 +140,57 @@ function showData(data, box) {
         </div>
       </div>
       `;
-        box.appendChild(imageCardDiv);
-    });
+    box.appendChild(imageCardDiv);
+  });
 }
 function handleClick() {
-    let search = document.getElementById("search").value;
-    getSearchData(search);
-    getData(search, 1);
+  let search = document.getElementById("search").value;
+  getSearchData(search);
+  getData(search, 1);
 }
 async function handleChange(val) {
-    try {
-        let data = await fetch(
-            "https://api.unsplash.com/search/photos?client_id=1_mZ7KFa6sDdUAKLf3npFtX5ASyCft4qo3E7dkPVKyw&per_page=30&query=office"
-        );
-        let data2 = await data.json();
-        if (data2.Response == "False") {
-            console.log("err");
-        } else {
-            console.log(data2, "sdfsdf");
-        }
-    } catch (e) {
-        console.log(e, "hi");
+  try {
+    let data = await fetch(
+      "https://api.unsplash.com/search/photos?client_id=1_mZ7KFa6sDdUAKLf3npFtX5ASyCft4qo3E7dkPVKyw&per_page=30&query=office"
+    );
+    let data2 = await data.json();
+    if (data2.Response == "False") {
+      console.log("err");
+    } else {
+      console.log(data2, "sdfsdf");
     }
+  } catch (e) {
+    console.log(e, "hi");
+  }
 }
 function showButtons(index) {
-    let buttons_div = document.getElementById("buttons");
-    buttons_div.innerHTML = null;
-    let original_id = index;
-    if (index <= 6) {
-        index = 6;
-    }
-    for (let i = index - 5; i <= index + 5; i++) {
-        let btn1 = document.createElement("button");
-        btn1.innerHTML = `${i}`;
-        btn1.setAttribute("id", `${i}`);
-        btn1.onclick = showData2;
-        buttons_div.appendChild(btn1);
-    }
-    let btn = document.getElementById(original_id);
+  let buttons_div = document.getElementById("buttons");
+  buttons_div.innerHTML = null;
+  let original_id = index;
+  if (index <= 6) {
+    index = 6;
+  }
+  for (let i = index - 5; i <= index + 5; i++) {
+    let btn1 = document.createElement("button");
+    btn1.innerHTML = `${i}`;
+    btn1.setAttribute("id", `${i}`);
+    btn1.onclick = showData2;
+    buttons_div.appendChild(btn1);
+  }
+  let btn = document.getElementById(original_id);
 }
 var search2 = "nature";
 function getSearchData(val) {
-    search2 = val;
+  search2 = val;
 }
 
 function showData2() {
-    let id = Number(this.id);
-    let num = id - 1;
-    let search = document.getElementById("search").value;
+  let id = Number(this.id);
+  let num = id - 1;
+  let search = document.getElementById("search").value;
 
-    getData(search2, num);
-    console.log(search2, "this is search2");
+  getData(search2, num);
+  console.log(search2, "this is search2");
 
-    showButtons(id);
+  showButtons(id);
 }
