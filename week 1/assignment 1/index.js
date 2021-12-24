@@ -6,8 +6,8 @@ async function getData(val, page) {
       `https://api.unsplash.com/search/photos?client_id=1_mZ7KFa6sDdUAKLf3npFtX5ASyCft4qo3E7dkPVKyw&page=${page}&per_page=30&query=${val}`
     );
     let data2 = await data.json();
-  
-    console.log(data.Response);
+
+    console.log("res", data.Response);
     if (data2.Response == "False") {
       console.log("err");
     } else {
@@ -33,7 +33,7 @@ async function getData(val, page) {
   } catch (e) {
     console.log(e, "hi");
   }
-  
+
 }
 
 getData("nature", 1);
@@ -77,7 +77,7 @@ function showData(data, box) {
                   fill="currentColor"
                 ></path>
               </svg>
-              <span>1598</span>
+              <span>${el.width}</span>
               <svg
                 width="16"
                 height="16"
