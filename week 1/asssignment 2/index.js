@@ -20,6 +20,6 @@ window.addEventListener('scroll', () => {
         setTimeout(() => {
             loadImages()
 
-        }, 1000)
+        }, 3000)
     }
 })
