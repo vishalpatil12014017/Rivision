@@ -1,10 +1,10 @@
 const container = document.querySelector('.container');
 let counter = 1;
-function loadImages(numImages = 8) {
+function loadImages(numImages = 25) {
     let i = 0;
     while (i < numImages) {
         const div = document.createElement('div');
-        div.textContent = `Box ${counter}`
+        div.textContent = `Masai Student ${counter}`
         container.appendChild(div);
         console.log(counter,i);
         counter++;
