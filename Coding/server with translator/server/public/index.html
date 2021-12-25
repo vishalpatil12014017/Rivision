@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Road To Backend</h1>
+    <script>
+        // // 1.get request
+        // async function getusers(){
+        //     var res= await fetch("http://localhost:3535/api/products");
+        //     var data= await res.json()
+        //     console.log('data:', data)
+
+        // }
+        // getusers()
+
+        // 2.post request
+        // async function postreq(){
+        //     var res= await fetch(`http://localhost:3535/api/products`,{
+        //         method:"POST",
+        //         body:JSON.stringify({
+        //             id: 111,
+        //             name: "Chocolate",
+        //             price: 60,
+        //             active: false,
+
+        //         }),
+        //        headers:{"Content-Type":"application/json"}
+        //     }); 
+        //     let data= await res.json()
+        //    console.log('data:', data)
+   
+        // }
+        // postreq()
+
+        // //  3.put request
+        // async function putreq(){
+        //     var res= await fetch(`http://localhost:3535/api/products/111`,{
+        //         method:"PUT",
+        //         body:JSON.stringify({
+        //             id: 111,
+        //             name: "Chocolate BOX",
+        //             price: 80,
+        //             active: false,
+
+        //         }),
+        //        headers:{"Content-Type":"application/json"}
+        //     }); 
+        //     let data= await res.json()
+        //    console.log('data:', data)
+   
+        // }
+        // putreq()
+
+        
+        //  4.delete request
+        async function deletereq(){
+            var res= await fetch(`http://localhost:3535/api/products/111`,{
+                method:"DELETE",
+               headers:{"Content-Type":"application/json"}
+            }); 
+            let data= await res.json()
+           console.log('data:', data)
+   
+        }
+        deletereq()
+
+
+    </script>
+</body>
+</html>
