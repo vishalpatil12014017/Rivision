@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>movie</title>
+</head>
+<body>
+    <h1>movies</h1>
+    <input type="text" placeholder="movie" id="movie" autocomplete="on">
+    <button onclick="getmovie()">submit</button>
+    <div id="cont">
+
+    </div>
+    <script>
+
+        let apikey="f5b43a96"
+         async function getmovie(){
+             try{
+                let movie=document.getElementById("movie").value;
+                let res=await fetch(`http://www.omdbapi.com/?apikey=${apikey}&t=${movie}`);
+             ;
+            let data=await res.json();
+             console.log(data)
+
+
+         var cont=document.getElementById("cont");
+         var div=document.createElement("div");
+         var img=document.createElement("img");
+         img.innerText=`poster : ${data.poster}`
+         var Awards=document.createElement("h3")
+         Awards.innerText=`Awards: ${data.Awards}`;
+
+         var Actors=document.createElement("h3")
+         Actors.innerText=`Actors: ${data.Actors}`;
+         var Title=document.createElement("h3")
+         Title.innerText=`Title  : ${data.Title}`;
+         var Title=document.createElement("h3")
+         Title.innerText=`Title : ${data.Title}`;
+         var Year=document.createElement("h3")
+         Year.innerText=`Year : ${data.Year}`;
+         var Rated=document.createElement("h3")
+         Rated.innerText= ` Rated : ${data.Rated}`;
+         var Released=document.createElement("h3")
+         Released.innerText=`Released: ${data.Released}`;
+         var Runtime=document.createElement("h3")
+         Runtime.innerText=`Runtime: ${data.Runtime}`;
+         var BoxOffice=document.createElement("h3")
+         BoxOffice.innerText=`BoxOffice : ${data.BoxOffice}`;
+         var Country=document.createElement("h3")
+         Country.innerText=`Country : ${data.Country}`;
+         var DVD=document.createElement("h3")
+         DVD.innerText=`DVD : ${data.DVD}`;
+         var Director=document.createElement("h3")
+         Director.innerText=`Director : ${data.Director}`;
+         var Genre=document.createElement("h3")
+         Genre.innerText=`Genre : ${data.Genre}`;
+         var Language=document.createElement("h3")
+         Language.innerText=`Language : ${data.Language}`;
+         var Metascore=document.createElement("h3")
+         Metascore.innerText=`Metascore : ${data.Metascore}`;
+         var Plot=document.createElement("h3")
+         Plot.innerText=`Metascore : ${data.Plot}`;
+         var Poster=document.createElement("h3")
+         Poster.innerText=`Poster : ${data.Poster}`;
+         var Production=document.createElement("h3")
+         Production.innerText=`Production : ${data.Production}`;
+
+         var Released=document.createElement("h3")
+         Released.innerText=`Released : ${data.Released}`;
+         var Response=document.createElement("h3")
+         Response.innerText=`Response : ${data.Response}`;
+         var Type=document.createElement("h3")
+         Type.innerText=`Type : ${data.Type}`;
+         var Website=document.createElement("h3")
+         Website.innerText=`Website : ${data.Website}`;
+         var Writer=document.createElement("h3")
+         Writer.innerText=`Writer : ${data.Writer}`;
+         var imdbID=document.createElement("h3")
+         imdbID.innerText=`imdbID : ${data.imdbID}`;
+         var imdbRating=document.createElement("h3")
+         imdbRating.innerText=`imdbRating : ${data.imdbRating}`;
+         var imdbVotes=document.createElement("h3")
+         imdbVotes.innerText=`imdbVotes : ${data.imdbVotes}`;
+        
+         div.append(Title,Actors,Year,Rated,Released,Runtime,Awards,BoxOffice,Country,DVD,Director,Genre,Language,Metascore,Poster,Production,Released,Response,Type,Website,Writer,imdbID,imdbRating,imdbVotes)
+           cont.append(div)
+
+            }
+            catch(err){
+                console.log(err)
+            }   
+         }
+
+        
+
+        
+    </script>
+</body>
+</html>

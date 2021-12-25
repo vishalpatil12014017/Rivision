@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>movie</title>
+    <style>
+        body{
+            background-color: rgb(46, 46, 46);
+            
+           background-size: 100%;
+        }
+        h1{
+            text-align: center;
+            font-size: 80px;
+           font-family: serif ;
+            color: seashell;
+            opacity:0.5;
+        }
+        input{
+            font-size: 30px;
+            background-color: white;
+            text-align: center;
+            margin: auto;
+            opacity:0.5;
+        }
+        button{
+            font-size: 30px;
+         
+            text-align: center;
+            margin-bottom: 20px;
+            opacity:0.3;
+            background-color: white;
+        }
+        button:hover{
+            background-color: rgb(184, 245, 184);
+        }
+        #cont{
+            max-width: 500px;
+            margin: auto;
+            background-color: white;
+            border-radius: 15px;
+            opacity:0.9;
+           
+        }
+        #cont button{
+            opacity:0.9;
+        }
+        #cont div{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        img{
+            width: 470px;
+            height: 400px;
+            text-align: center;
+            padding: 15px;
+        }
+        h2{
+            margin-bottom: 10px;
+        }
+        h3{
+            margin-top: 0px;
+        }
+        .not{
+            color: black;
+        }
+        .rec{
+            background-color:rgb(148, 247, 250) ;
+           max-width: 250px;
+           margin-left: 25%;
+          
+        }
+        .cont btn{
+            margin-left: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>IMDB Movie Ratings</h1>
+    <input type="text" placeholder="movie" id="movie" autocomplete="on">
+    <button onclick="getmovie()">submit</button>
+    <div id="cont">
+
+    </div>
+    <script>
+        
+        let apikey="f5b43a96"
+         async function getmovie(){
+           
+             try{
+                let movie=document.getElementById("movie").value;
+                let res=await fetch(`http://www.omdbapi.com/?apikey=${apikey}&t=${movie}`);
+             ;
+            let data=await res.json();
+             console.log(data)
+      
+    if(data.Response== "True"){
+        show()
+        function show(){
+            
+            var cont=document.getElementById("cont");
+        cont.innerHTML=null
+         var div=document.createElement("div");
+         var img=document.createElement("img");
+         img.src=data.Poster;
+         var Title=document.createElement("h2")
+         Title.innerText=`Title  : ${data.Title}`;
+         var Rated=document.createElement("h3")
+         Rated.innerText= ` Rated : ${data.Rated}`;
+        
+
+         var Released=document.createElement("h3")
+         Released.innerText=`Released : ${data.Released}`;
+        
+         var Genre=document.createElement("h3")
+         Genre.innerText=`Genre : ${data.Genre}`;
+         var imdbRating=document.createElement("h3")
+         imdbRating.innerText=`imdbRating : ${data.imdbRating}`;
+        document.body.style.backgroundImage=`url(${data.Poster})`
+        if(data.imdbRating>=8.5){
+            var btn=document.createElement("button");
+            btn.innerText="recommended"
+            btn.setAttribute("class","rec")
+            div.append(img,Title,Rated,Released,Genre,imdbRating,btn)
+           cont.append(div)
+        }else{
+            div.append(img,Title,Rated,Released,Genre,imdbRating)
+           cont.append(div)
+        }
+        
+        
+        }
+      
+       
+    }else{
+       none()
+            function none(){
+                cont.innerHTML=null;
+                document.body.style.backgroundImage=null
+                var div=document.createElement("div");
+                var not=document.createElement("h1");
+                not.setAttribute("class","not")
+                not.innerText="result not found"
+               div.append(not)
+                cont.append(div)
+            }
+        }
+
+            }
+            catch(err){
+                console.log(err)
+            }   
+         }
+
+        
+
+        
+    </script>
+</body>
+</html>

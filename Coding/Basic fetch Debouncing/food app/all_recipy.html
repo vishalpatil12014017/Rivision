@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title >navbar</title>
+  </head>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <body>
+   <div id="data">
+
+   </div>
+<script type="module">
+        import {navbar} from "./navbar.js"
+        import {getdata,append} from "./script/showdata.js"
+        var div1=document.createElement("div");
+        div1.innerHTML=navbar()
+        document.body.prepend(div1)
+
+     getdata('https://www.themealdb.com/api/json/v1/1/categories.php').then((res)=>{
+      var place=document.getElementById("data")
+      console.log(res.categories)
+      // return res.categories
+      append(res.categories,place)
+     })
+
+    </script>
+  </body>
+</html>

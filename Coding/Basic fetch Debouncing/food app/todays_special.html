@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>navbar</title>
+  </head>
+<link rel="stylesheet" href="./css/style.css">
+<body>
+  <div id="data1"></div>
+  <script type="module">
+      import {navbar} from "./navbar.js"
+      import {getdata,append} from "./script/single file.js"
+      var div1=document.createElement("div");
+      div1.innerHTML=navbar()
+      document.body.prepend(div1)
+
+   getdata('https://www.themealdb.com/api/json/v1/1/random.php').then((res)=>{
+    var place=document.getElementById("data1")
+    console.log(res.meals)
+    append(res.meals,place)
+   })
+
+    </script>
+  </body>
+</html>

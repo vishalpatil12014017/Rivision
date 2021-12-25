@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+    <style>
+        body{
+            background-color: black;
+            padding: 20px;
+          
+        }
+        .con{
+            background-color: white;
+            padding: 15px;
+            height: 100%;
+        }
+        .nav{
+            display: grid;
+            grid-template-columns: 20% 60% 20%;
+        }
+        .left{
+            display: grid;
+            grid-template-columns: 20% 80%;
+        }
+        .left img{
+           width: 30px;
+           height: 40px;
+        }
+       .logo img{
+            width: 100px;
+            height: 50px;
+            margin-top: 0px;
+           
+        }
+        .middle input{
+            width: 50%;
+            margin-top: 10px;
+            margin-left: 20%;
+        }
+        input{
+            height: 25px;
+            margin-right: -3px;
+            border: 1px solid black;
+           
+        }
+        button{
+            margin-left: 0px;
+            height: 30px;
+            border: 1px solid black;
+            border-left: none;
+            background-color: white;   
+        }
+        button:hover{
+            background-color: rgb(240, 233, 233);
+        }
+        .right{
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+        }
+        .right img{
+            width: 80%;
+            height: 60px;
+        }
+        #main{
+            background-color: rgb(249,249,249); 
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+        }
+      
+        .iframe{
+            width: 100%; 
+            margin-bottom: 50px;
+           
+        }
+        #main div{
+            margin-bottom: 50px;
+            margin: auto;
+
+        }
+        h1{
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+     
+    </style>
+</head>
+<body>
+<div class="con">
+    <div class="nav">
+        <div class="left">
+            <div>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAV1BMVEX///8AAABhYWFxcXGenp58fHzFxcWpqammpqYzMzPIyMjt7e3w8PD4+PiSkpJAQEDe3t5LS0sWFhYaGholJSW0tLSWlpZra2s7OzswMDBcXFxkZGRRUVHjFPPVAAABIElEQVR4nO3dSU7DQBBA0YJMzuDME4T7nxMcNhH7UqH2eyf4LcvuXrTKEQAAAAAAAAAAAAAAAPy1mj3eW/SYrZ7rWx/e2nXYRPTH6opUpz621Q3JtnGuTkh2juqCdLGrLki2i0t1QrJLxKO6IdX7sCFeqysSbX/PNP18MW3RYt6XnRMBAAAAAAAAAOD/2nezSYtm3f65vv5WfTUr0WRY4bK6ItU9YlrdkKyLj+qEZMsR3IJu+zUcnmFXnZCsi8avst+H7WJSXZHo1o/iTAMAAAAAAAAAALzatD43seVJwtdhgZ/VFakeMYIZtG1fvhzmCFcXpBvBPO+Wv6SDbfSn6oZUx58tcfNVXZHosH5u+a3/3wIAAAAAAAAAAAAAAIBX36MsK3ieZKfnAAAAAElFTkSuQmCC" alt="">
+            </div>
+            <div class="logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="">
+            </div>
+        </div>
+        <div class="middle">
+            <input type="text" placeholder="Search Here...." id="video" >
+            <button onclick="search()">submit</button> 
+        </div>
+        <div class="right">
+            <div>
+                <img src="IMG_20210902_195929.jpg" alt="">
+            </div>
+            <div>
+                <img src="IMG_20210902_195959.jpg" alt="">  
+            </div>
+            <div>
+                <img src="IMG_20210902_200022.jpg" alt="">
+            </div>
+            <div>
+                <img src="IMG_20210902_200049.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h1>VishalTube</h1>
+    <div id="main">  
+
+    </div>
+</div>
+    <script>
+         async function search(){
+            var main=document.getElementById("main");
+            main.innerHTML=null;
+           
+            let video=document.getElementById("video").value;
+             try{
+                let res=await fetch(
+                    `https://youtube.googleapis.com/youtube/v3/search?q=${video}&key=AIzaSyCgYBF4-cRzvBHhBLpVNvw6mEl3DdEkjyY&maxResults=20`
+                    );
+             let data=await res.json();
+             console.log(data)
+
+             for({
+                 id:{videoId},
+             } of data.items){
+                //  console.log(videoId)
+                var div=document.createElement("div")
+                let video_frame=document.createElement("iframe");
+                video_frame.setAttribute("class","iframe")
+                video_frame.src=`https://www.youtube.com/embed/${videoId}`;
+                video_frame.onmouseover=
+                video_frame.allow="fullscreen"
+                div.appendChild(video_frame)
+                main.appendChild(div)
+
+             }
+             }
+             catch(err){
+                console.log(err)
+             }
+            
+         }
+         searchDefault()
+         async function searchDefault(){
+            var main=document.getElementById("main");
+             try{
+                let res=await fetch(
+                    `https://youtube.googleapis.com/youtube/v3/search?q=mostPopularIndia&key=AIzaSyCgYBF4-cRzvBHhBLpVNvw6mEl3DdEkjyY&maxResults=20`
+                    );
+             let data=await res.json();
+             console.log(data)
+
+             for({
+                 id:{videoId},
+             } of data.items){
+                //  console.log(videoId)
+                var div=document.createElement("div")
+                let video_frame=document.createElement("iframe");
+                video_frame.setAttribute("class","iframe")
+                video_frame.src=`https://www.youtube.com/embed/${videoId}`;
+                video_frame.onmouseover=
+                video_frame.allow="fullscreen"
+                div.appendChild(video_frame)
+                main.appendChild(div)
+
+             }
+             }
+             catch(err){
+                console.log(err)
+             }
+            
+         }
+
+    </script>
+</body>
+</html>
