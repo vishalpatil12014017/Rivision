@@ -1,5 +1,5 @@
-function navbar(){
-    return ` <div id="navbar">
+function navbar() {
+  return ` <div id="navbar">
     <h3><a href="/">Home</a></h3>
 
     <div id="options">
@@ -11,4 +11,4 @@ function navbar(){
   </div>`
 }
 
-export  default navbar
+export default navbar

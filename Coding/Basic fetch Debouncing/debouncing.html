@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>debouncing</title>
-    <style>
-        input {
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>debouncing</title>
+  <style>
+    input {
       width: 200px;
     }
 
@@ -17,49 +18,39 @@
       border-top: none;
       overflow: scroll;
     }
-
-    </style>
+  </style>
 </head>
+
 <body>
-    <input type="text" oninput="debounce(main,1000)" id="query" />
-
-    <div id="movies"></div>
-
-
-<script>
-   let apikey="f5b43a96";
-   var timerId;
-    var movies_div=document.getElementById("movies")
-    async function search_movies(name){
-        let res=await fetch(`http://www.omdbapi.com/?apikey=${apikey}&s=${name}`);
-        let  data=await res.json();
-        // console.log('data:', data)
-        return data.Search;
-
+  <input type="text" oninput="debounce(main,1000)" id="query" />
+  <div id="movies"></div>
+  <script>
+    let apikey = "f5b43a96";
+    var timerId;
+    var movies_div = document.getElementById("movies")
+    async function search_movies(name) {
+      let res = await fetch(`http://www.omdbapi.com/?apikey=${apikey}&s=${name}`);
+      let data = await res.json();
+      // console.log('data:', data)
+      return data.Search;
     }
-
-
-    function appendMovies(m){
-      movies_div.innerHTML=null;
-      m.forEach(({Title}) => {
-        let p=document.createElement("p");
-        p.innerHTML=Title;
+    function appendMovies(m) {
+      movies_div.innerHTML = null;
+      m.forEach(({ Title }) => {
+        let p = document.createElement("p");
+        p.innerHTML = Title;
         movies_div.append(p);
-        
+
       });
-
-
     }
+    async function main() {
+      let name = document.getElementById("query").value;
+      if (name.length < 3) {
+        return false;
+      }
+      let movies = await search_movies(name);
 
-
- async   function main(){
-        let name=document.getElementById("query").value;
-        if(name.length<3){
-            return false;
-        }
-      let movies= await search_movies(name);
-
-      if(movies===undefined){    //it is avoid for forech undefined
+      if (movies === undefined) {    //it is avoid for forech undefined
         return false;
       }
 
@@ -67,24 +58,22 @@
       console.log('movies:', movies)
 
     }
-    function debounce(func,delay){
-      let name=document.getElementById("query").value;
-        if(name.length<3){
-            return false;
-        }
-
-        if(timerId){
-          clearTimeout(timerId)
-        }
-
-
-      timerId=setTimeout(()=>{
+    function debounce(func, delay) {
+      let name = document.getElementById("query").value;
+      if (name.length < 3) {
+        return false;
+      }
+      if (timerId) {
+        clearTimeout(timerId)
+      }
+      timerId = setTimeout(() => {
         func();
-      },delay)
+      }, delay)
 
     }
 
-</script>
-    
+  </script>
+
 </body>
+
 </html>

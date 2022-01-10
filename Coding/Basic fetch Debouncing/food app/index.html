@@ -1,97 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>navbar</title>
-  </head>
- 
 
-  <link rel="stylesheet" href="./css/style.css">
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>navbar</title>
+</head>
+<link rel="stylesheet" href="./css/style.css">
+
+<body>
   </div>
   <div id="search">
-  <input type="text" placeholder="Enter here...." id="sea" oninput="debounce(main,1000)">
-  <div id="naming"></div>
+    <input type="text" placeholder="Enter here...." id="sea" oninput="debounce(main,1000)">
+    <div id="naming"></div>
   </div>
   <div id="data">
 
   </div>
-   <div id="data1"></div>
-    <script type="module">
-        import {navbar} from "./navbar.js"
-        import {getdata,append} from "./script/showdata.js"
-        var div1=document.createElement("div");
-        div1.innerHTML=navbar()
-        document.body.prepend(div1)
+  <div id="data1"></div>
+  <script type="module">
+    import { navbar } from "./navbar.js"
+    import { getdata, append } from "./script/showdata.js"
+    var div1 = document.createElement("div");
+    div1.innerHTML = navbar()
+    document.body.prepend(div1)
 
-     getdata('https://www.themealdb.com/api/json/v1/1/categories.php').then((res)=>{
-      var place=document.getElementById("data")
+    getdata('https://www.themealdb.com/api/json/v1/1/categories.php').then((res) => {
+      var place = document.getElementById("data")
       // console.log(res.categories)
-      append(res.categories,place)
-     })
-    </script>
-    <script>
-      
-       async function running(search) {
-         var datadiv=document.getElementById("data")
-        var divdata=document.getElementById("data1")
-        divdata.innerHTML=null
-         var res =await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
-         let data =await res.json();
-         console.log(data.meals);
-         var newdata=data.meals
-         newdata.forEach(el => {
-        let div=document.createElement("div");
-        var p_name=document.createElement("p");
-        var p_strCategory=document.createElement("p");
-        var img=document.createElement("img");
-        var btn=document.createElement("button");
-        btn.innerHTML="Book Order"
-        img.src=el.strMealThumb;
-        p_name.innerHTML=el.strMeal;
-        p_strCategory.innerHTML=el.strCategory;
+      append(res.categories, place)
+    })
+  </script>
+  <script>
 
-        div.append(img,p_name,p_strCategory,btn);
-        if(search.length>0){
+    async function running(search) {
+      var datadiv = document.getElementById("data")
+      var divdata = document.getElementById("data1")
+      divdata.innerHTML = null
+      var res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
+      let data = await res.json();
+      console.log(data.meals);
+      var newdata = data.meals
+      newdata.forEach(el => {
+        let div = document.createElement("div");
+        var p_name = document.createElement("p");
+        var p_strCategory = document.createElement("p");
+        var img = document.createElement("img");
+        var btn = document.createElement("button");
+        btn.innerHTML = "Book Order"
+        img.src = el.strMealThumb;
+        p_name.innerHTML = el.strMeal;
+        p_strCategory.innerHTML = el.strCategory;
+
+        div.append(img, p_name, p_strCategory, btn);
+        if (search.length > 0) {
           divdata.append(div);
-          datadiv.style.display="none"  
+          datadiv.style.display = "none"
         }
-            
-    });   
-   }
-    document.getElementById('naming').style.display = "none";
-   var timerId;
-    var names_div=document.getElementById("naming")
-    var info_div=document.getElementById("search")
-    // document.getElementById('naming').style.display = "none";
-    async function search_movies(name){
-      let res = await fetch (`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
-        let  data=await res.json();
-        console.log('data:', data)
-        return data.meals;
+
+      });
     }
-    var count=0
-      function appendMovies(m){
+    document.getElementById('naming').style.display = "none";
+    var timerId;
+    var names_div = document.getElementById("naming")
+    var info_div = document.getElementById("search")
+    // document.getElementById('naming').style.display = "none";
+    async function search_movies(name) {
+      let res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
+      let data = await res.json();
+      console.log('data:', data)
+      return data.meals;
+    }
+    var count = 0
+    function appendMovies(m) {
       document.getElementById('naming').style.display = "grid";
       m.forEach(element => {
-        let p=document.createElement("p");
-        p.innerHTML=element.strMeal;
+        let p = document.createElement("p");
+        p.innerHTML = element.strMeal;
         names_div.append(p);
-      
-        p.addEventListener("click",function () {
+
+        p.addEventListener("click", function () {
           running(p.innerText);
         })
       });
     }
- async function main(){
-        let name=document.getElementById("sea").value;
+    async function main() {
+      let name = document.getElementById("sea").value;
 
-      let movies= await search_movies(name);
+      let movies = await search_movies(name);
 
-      if(movies===undefined){    //it is avoid for forech undefined
-       
+      if (movies === undefined) {    //it is avoid for forech undefined
+
         return false;
       }
 
@@ -99,20 +99,21 @@
       console.log('movies:', movies)
 
     }
-    function debounce(func,delay){
-      let name=document.getElementById("sea").value;
-        // if(name.length<3){
-        //     return false;
-        // }
+    function debounce(func, delay) {
+      let name = document.getElementById("sea").value;
+      // if(name.length<3){
+      //     return false;
+      // }
 
 
-        if(timerId){
-          clearTimeout(timerId)
-        }
-    timerId=setTimeout(()=>{
+      if (timerId) {
+        clearTimeout(timerId)
+      }
+      timerId = setTimeout(() => {
         func();
-      },delay)
+      }, delay)
     }  
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
