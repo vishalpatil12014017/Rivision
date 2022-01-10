@@ -6,6 +6,7 @@ import { registerfail, registersucces } from '../../store/Auth/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Addcontest from './Addcontest';
 function Register() {
     const [formdata, setFormdata] = useState({})
     const { error, MESSAGE } = useSelector(store => store.Register)
@@ -47,6 +48,7 @@ function Register() {
         return <Redirect to="/login"></Redirect>
     }
     return (
+        <>
         <div className="container p-5 border border-dark m-5 mx-auto bg-white" style={{ maxWidth: "800px", margin: "auto", borderRadius: "15px" }}>
             <h1 className="pb-3">Add Student Here</h1>
             <form >
@@ -93,17 +95,13 @@ function Register() {
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary mt-2" onClick={
-
                     handlesubmit
-
-
-
-
-
-
                 }>Submit</button>
             </form>
+           
         </div>
+         <Addcontest></Addcontest>
+         </>
     )
 }
 

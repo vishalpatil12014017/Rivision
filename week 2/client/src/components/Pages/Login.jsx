@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { loginfail, loginsucces } from '../../store/Auth/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 function Login() {
     const [formdata, setFormdata] = useState({})
     const { Token } = useSelector(store => store.Auth)
