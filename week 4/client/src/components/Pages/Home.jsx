@@ -96,20 +96,20 @@ function Home() {
                                 setPage((page - 1))
                             }}>Priv</button>
                         </li>
-                        <li className="page-item"><a className="page-link" onClick={() => {
+                        <li className="page-item"  ><button className="page-link" disabled={page > disable ? true : false} onClick={() => {
                             setPage((page))
-                        }}>{page}</a></li>
-                        <li className="page-item"><a className="page-link"
+                        }}>{page}</button></li>
+                        <li className="page-item"  ><button className="page-link" disabled={page+1 > disable ? true : false}
                             onClick={() => {
                                 setPage((page + 1))
-                            }}>{page + 1}</a></li>
-                        <li className="page-item"><a className="page-link"
+                            }}>{page + 1}</button></li>
+                        <li  className="page-item" ><button className="page-link" disabled={page+2 > disable ? true : false}
                             onClick={() => {
                                 setPage((page + 2))
-                            }}>{page + 2}</a></li>
+                            }}>{page + 2}</button></li>
                         <li className="page-item">
                             {/* disabled={data?.length < 4 ? true : false} */}
-                            <button type="button" disabled={page == disable ? true : false} className="btn btn-success px-3" onClick={() => {
+                            <button type="button" disabled={page== disable ? true : false} className="btn btn-success px-3" onClick={() => {
                                 setPage((page + 1))
                             }}>Next</button>
                         </li>
