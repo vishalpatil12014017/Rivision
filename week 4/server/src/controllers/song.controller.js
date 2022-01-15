@@ -5,5 +5,4 @@ const crudcontroller = require("../crudcontroller/crud.controller");
 router.post("", crudcontroller.post(Song));
 router.get("", crudcontroller.get(Song));
 router.get("/:id", crudcontroller.getOne(Song));
-
 module.exports = router

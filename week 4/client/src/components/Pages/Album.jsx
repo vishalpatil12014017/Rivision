@@ -97,7 +97,7 @@ const Toolbar = styled.header`
 }
 .row{
     position: relative;
-  top: 80%;
+  top: 82%;
   left: 0%;
   @media all and (max-width:984px){   
     top: 78%;
@@ -125,21 +125,24 @@ h5{
 }
 
 `
-const List = ({ data }) => {
-      console.log(data);
+const Album = () => {
+      var data=JSON.parse(localStorage.getItem("data"))
+      //data=data.albums[0].songs
+      console.log('data.albums[0].songs:', data.albums[0].songs)
       return (
             <Toolbar>
                   <div style={{ padding: "4%", paddingTop: "1%", paddingBottom: "1%" }}>
-                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Stream For Free Now</h1>
+                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Artist : {data.name}</h1>
+                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Album Name : {data.albums[0].name}</h1>
+                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Album Genere : {data.albums[0].genere}</h1>
                         <div className="row">
                               {
-                                    data.map((e) => (
+                                    data.albums[0].songs.map((e) => (
                                           <div className="col col-6  g-3 col-lg-4 col-xl-3" key={e._id} >
-                                                <Link to="/album" >
+                                               
                                                       <div className="card" key={e._id} style={{ borderRadius: "10px", border: "none" }} onClick={() => {
-                                                      localStorage.setItem("data",JSON.stringify(e))
 
-                                                }}>
+                                                      }}>
                                                             <img style={{ borderRadius: "10px" }} src={e.url} classname="img-fluid" alt="" />
 
                                                             <div className="overlay1" style={{ padding: "1%" }}>
@@ -149,7 +152,7 @@ const List = ({ data }) => {
                                                                   </div>
                                                                   <div className="row">
                                                                         <div className="col-10">
-                                                                              <h5 className=" float-start" style={{ color: "#abafb4" }} aria-current="page" >{e.albums[0].name}</h5>
+                                                                              <h5 className=" float-start" style={{ color: "#abafb4" }} aria-current="page" >{e.duration}</h5>
                                                                         </div>
                                                                         <div className="col-2">
                                                                               <img className="p-0 m-0 float-end like" src={e.likestatus ? like2 : like1} alt="" onClick={() => {
@@ -161,7 +164,7 @@ const List = ({ data }) => {
 
                                                             </div>
                                                       </div>
-                                                </Link>
+                                              
                                           </div>
                                     ))
                               }
@@ -171,4 +174,4 @@ const List = ({ data }) => {
       )
 }
 
-export default List
+export default Album

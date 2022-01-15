@@ -20,20 +20,18 @@ function Navbar() {
                         </button>
                         <div className="col-6 collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav px-5">
-                                <Link to="/contest" className="nav-link px-3 active" aria-current="page">Contest</Link>
                                 <Link to="/about" className="nav-link px-3">About Us</Link>
                                 <a className="nav-link px-3">Pricing</a>
                                 <a className="nav-link px-3">Contact Us</a>
-                                <Link to="/users" className="nav-link px-1 mx-3 px-3" type="button" style={{ maxHeight: "40px" }}>Users</Link>
                                 {
-                                    !Token ? <Link to="/login" className="nav-link px-3 btn btn-primary py-0 my-auto text-white" type="button" style={{ maxHeight: "40px" }} >Login</Link> : <Link to="/login" className="nav-link px-3 btn btn-primary py-0 my-auto text-white" type="button" style={{ maxHeight: "40px" }} onClick={() => {
+                                    Token?.length==0 ? <Link to="/login" className="nav-link px-3 btn btn-primary py-0 my-auto text-white" type="button" style={{ maxHeight: "40px" }} >Login</Link> : <Link to="/login" className="nav-link px-3 btn btn-primary py-0 my-auto text-white" type="button" style={{ maxHeight: "40px" }} onClick={() => {
                                         dispatch(loginfail())
                                         localStorage.setItem("Token", "")
                                         localStorage.setItem("isAuth", false)
-                                        localStorage.setItem("isAuthAdmin", false)
+                                        localStorage.setItem("data", "")
                                     }}>Logout</Link>
                                 }
-                                <Link to="/register" className="nav-link px-3 btn btn-primary py-0 my-auto text-white mx-2" type="button" style={{ maxHeight: "40px" }} >Admin Panel</Link>
+                                <Link to="/profile" className="nav-link px-3 btn btn-primary py-0 my-auto text-white mx-2" type="button" style={{ maxHeight: "40px" }} >Profile</Link>
                             </div>
                         </div>
                     </div>

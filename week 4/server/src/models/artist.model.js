@@ -1,12 +1,16 @@
 const mongoose=require("mongoose");
 const artistSchema=new mongoose.Schema({
-    name:{type:String,required:true},
+    name:{type:String,required:false},
     email:{type:String,required:true,unique:"true"},
     password:{type:String,required:true,unique:"true"},
-    albums:{type:mongoose.Schema.Types.ObjectId,required:true,ref:"album"},
+    albums:[{type:mongoose.Schema.Types.ObjectId,required:false,ref:"album"}],
+    url:{type: String, required: false }
 },
 {
     versionKey:false,
     timestamps:true
 })
-module.exports=mongoose.model("artist",artistSchema);
+
+const Artist = mongoose.model("artist", artistSchema); // Artists
+
+module.exports = Artist;

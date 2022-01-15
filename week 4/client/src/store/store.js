@@ -1,8 +1,8 @@
 
 import { createStore,combineReducers,applyMiddleware,compose } from "redux";
-import { Auth,Register } from "./Auth/reducer.js";
+import { Auth } from "./Auth/reducer.js";
 const rootReducer=combineReducers({
-   Auth,Register
+   Auth
 })
 const middleware=(store)=>(next)=>(action)=>{
     if(typeof action ==="function"){

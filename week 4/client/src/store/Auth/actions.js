@@ -1,4 +1,4 @@
-import {  REGISTER_SUCCESS, REGISTER_FAIL,LOGIN_SUCCESS, LOGIN_FAIL } from "./actionTypes.js"
+import {  LOGIN_SUCCESS, LOGIN_FAIL } from "./actionTypes.js"
 
 export const loginsucces = (Token) => {
     return {
@@ -12,16 +12,5 @@ export const loginfail = (err) => {
         payload: err,
     }
 }
-export const registersucces = (Token) => {
-    return {
-        type: REGISTER_SUCCESS,
-        payload:Token,
-    }
-}
-export const registerfail = (err) => {
-    return {
-        type: REGISTER_FAIL,
-        payload: err,
-    }
-}
+
 
