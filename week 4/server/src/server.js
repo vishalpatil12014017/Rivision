@@ -3,7 +3,7 @@ const connect = require("./config/db");
 const cors = require('cors');
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+app.use(cors())
 const songcontroller = require("./controllers/song.controller");
 const albumcontroller = require("./controllers/albun.controller")
 const artistcontroller = require("./controllers/artist.controller");

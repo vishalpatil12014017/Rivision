@@ -39,10 +39,12 @@ router.post("/login", async (req, res) => {
     }
 })
 router.post("", crudcontroller.post(Artist));
+
 router.patch("/:id", async (req, res) => {
     console.log(req.params.id);
     const artist = await Artist.findByIdAndUpdate(req.params.id, req.body).lean().exec();
-    return res.status(200).json({ artist })
+   
+    return res.status(200).send({ artist });
 
 
 })
