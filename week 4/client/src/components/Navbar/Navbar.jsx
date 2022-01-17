@@ -20,7 +20,7 @@ function Navbar() {
                         </button>
                         <div className="col-6 collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav px-5">
-                                <Link to="/about" className="nav-link px-3">About Us</Link>
+                                <Link to="/" className="nav-link px-3">Home</Link>
                                 <a className="nav-link px-3">Pricing</a>
                                 <a className="nav-link px-3">Contact Us</a>
                                 {
