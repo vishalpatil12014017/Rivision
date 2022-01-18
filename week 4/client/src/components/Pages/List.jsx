@@ -126,14 +126,14 @@ h5{
 
 `
 const List = ({ data }) => {
-      console.log(data);
+      console.log("data",data);
       return (
             <Toolbar>
                   <div style={{ padding: "4%", paddingTop: "1%", paddingBottom: "1%" }}>
                         <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Stream For Free Now</h1>
                         <div className="row">
                               {
-                                    data.map((e) => (
+                                    data?.map((e) => (
                                           <div className="col col-6  g-3 col-lg-4 col-xl-3" key={e._id} >
                                                 <Link to="/album" >
                                                       <div className="card" key={e._id} style={{ borderRadius: "10px", border: "none" }} onClick={() => {
@@ -149,7 +149,7 @@ const List = ({ data }) => {
                                                                   </div>
                                                                   <div className="row">
                                                                         <div className="col-10">
-                                                                              <h5 className=" float-start" style={{ color: "#abafb4" }} aria-current="page" >{e.albums[0].name}</h5>
+                                                                              <h5 className=" float-start" style={{ color: "#abafb4" }} aria-current="page" >{e.artistname}</h5>
                                                                         </div>
                                                                         <div className="col-2">
                                                                               <img className="p-0 m-0 float-end like" src={e.likestatus ? like2 : like1} alt="" onClick={() => {

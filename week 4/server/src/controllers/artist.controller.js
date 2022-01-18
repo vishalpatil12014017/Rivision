@@ -9,6 +9,8 @@ const crudcontroller = require("../crudcontroller/crud.controller");
 router.get("", async (req, res) => {
     const page = +req.query.page || 1;
     const size = +req.query.size || 4;
+    const genere = req.query.genere || "All";
+    const sort = +req.query.sort || -1
     const offset = (page - 1) * size;
     const totalUserCount = await Artist.find().countDocuments();
     const totalPages = Math.ceil(totalUserCount / size);
@@ -43,7 +45,7 @@ router.post("", crudcontroller.post(Artist));
 router.patch("/:id", async (req, res) => {
     console.log(req.params.id);
     const artist = await Artist.findByIdAndUpdate(req.params.id, req.body).lean().exec();
-   
+
     return res.status(200).send({ artist });
 
 

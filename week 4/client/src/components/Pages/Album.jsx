@@ -128,16 +128,16 @@ h5{
 const Album = () => {
       var data=JSON.parse(localStorage.getItem("data"))
       //data=data.albums[0].songs
-      console.log('data.albums[0].songs:', data.albums[0].songs)
+      console.log('data.albums[0].songs:', data)
       return (
             <Toolbar>
                   <div style={{ padding: "4%", paddingTop: "1%", paddingBottom: "1%" }}>
-                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Artist : {data.name}</h1>
-                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Album Name : {data.albums[0].name}</h1>
-                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Album Genere : {data.albums[0].genere}</h1>
+                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Artist : {data.artistname}</h1>
+                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Album Name : {data.name}</h1>
+                        <h1 className='pt-3' style={{ fontSize: "20px", color: "white" }}>Album Genere : {data.genere}</h1>
                         <div className="row">
                               {
-                                    data.albums[0].songs.map((e) => (
+                                    data.songs.map((e) => (
                                           <div className="col col-6  g-3 col-lg-4 col-xl-3" key={e._id} >
                                                
                                                       <div className="card" key={e._id} style={{ borderRadius: "10px", border: "none" }} onClick={() => {

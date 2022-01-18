@@ -7,14 +7,16 @@ import { PrivateRoute } from './components/Routes/PrivateRoute'
 import Profile from './components/Pages/Profile';
 import Home from './components/Pages/Home';
 import Album from './components/Pages/Album';
+import { useParams } from 'react-router';
 function App() {
 
+  console.log('id:', useParams())
   return (
     <div className="App">
       <Navbar></Navbar>
       <Switch>
        
-        <Route exact path="/" >
+        <Route exact path="/home" >
           <Home></Home>
         </Route>
         <Route  path="/album" >
